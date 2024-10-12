@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "PrjGerenciadorDePessoas/1.0.0": {
+        "dependencies": {
+          "PrjHelloWorld": "1.0.2"
+        },
+        "runtime": {
+          "PrjGerenciadorDePessoas.dll": {}
+        }
+      },
+      "PrjHelloWorld/1.0.2": {
+        "runtime": {
+          "lib/net6.0/PrjHelloWorld.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PrjGerenciadorDePessoas/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PrjHelloWorld/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-66mu08bGMdnCb54nQ7fcaeSIZx4iYTXr8IW5N93TxcEBFOf7el6bCYnftD+5wcBni6Iqs5yMOCWHr2pStRztGQ==",
+      "path": "prjhelloworld/1.0.2",
+      "hashPath": "prjhelloworld.1.0.2.nupkg.sha512"
+    }
+  }
+}
