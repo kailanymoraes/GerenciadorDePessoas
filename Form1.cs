@@ -1,7 +1,11 @@
 using PrjHelloWorld.Models;
+using Newtonsoft.Json;
+//using System.Text.Json;
 using System.CodeDom;
 using System.Linq.Expressions;
 using System.Reflection;
+using static System.Windows.Forms.LinkLabel;
+using System.Text.Json;
 
 namespace PrjGerenciadorDePessoas
 {
@@ -14,11 +18,14 @@ namespace PrjGerenciadorDePessoas
         public Form1()
         {
             InitializeComponent();
+            lstPessoas.DisplayMember = "Nome";
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lblMensagem.Text = string.Empty;
+            cmbFormatoRelatorio.Text = "Documento de texto";
+            //lblMensagem.Text = string.Empty;
+            //SerializarJson();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -196,16 +203,37 @@ namespace PrjGerenciadorDePessoas
 
         private void btnGerarDoc_Click(object sender, EventArgs e)
         {
+            //    string conteudoArquivo =
+            //        $"Nome: {this.pessoa.Nome} -" +
+            //        $"Idade: {this.pessoa.getIdadeFormatada()}";
+        try
+        { 
+            if (cmbFormatoRelatorio.Text == "Documento de texto")
+            {
+                gerarRelatorio(SerializarParaTxt());
+            }
+            else
+            {
+                gerarRelatorio(SerializarJson());
+            }
+                MessageBox.Show($"Relatório gerado com sucesso no formato {cmbFormatoRelatorio.Text}", "Info", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
+        }
+
+
+
+        private void gerarRelatorio(string conteudo)
+        {
             try
             {
-                string conteudoArquivo =
-                       $"Nome: {this.pessoa.Nome} -" +
-                       $" Idade {this.pessoa.getIdadeFormatada()}";
+                File.WriteAllText("Relatorio/relatorio.txt", conteudo);
 
-                File.WriteAllText("C://Users//kailany.smoraes//source//repos//SlnGerenciadorDePessoas//PrjGerenciadorDePessoas//relatorio//relatorio.txt", 
-                    conteudoArquivo);
-
-                MessageBox.Show("Relatório gerado com sucesso!", "Info",
+                MessageBox.Show($"Relatório gerado com sucesso no formato {cmbFormatoRelatorio.Text}", "Info",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ResetForm();
@@ -216,8 +244,56 @@ namespace PrjGerenciadorDePessoas
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
+        }
+
+        private string SerializarParaTxt()
+        {
+            //lstPessoas.items // total de pessoas
+            //laço de repetição
+            Pessoa pessoa;
+            string linha = "";
+
+            for (int i = 0; i < lstPessoas.Items.Count; i++)
+            {
+                pessoa = (Pessoa)lstPessoas.Items[i];
+                linha = $"{linha}" + $"{pessoa.Nome} - {pessoa.getIdadeFormatada()}\n";
+            }
+            return linha;
+        }
+
+        private string SerializarJson()
+        {
+            //lstPessoas.items // total de pessoas
+            //laço de repetição  
+            //string json = "";
+            Pessoa pessoa;
+            List<Pessoa> listaPessoas;
+            //declarando uma variavel do tipo lista pessoas
+            listaPessoas = new List<Pessoa>();
+            //iniciando uma lista de pessoas e atribuindo a variavel
+            string json = JsonConvert.SerializeObject(listaPessoas, Formatting.Indented);
+
+            for (int i = 0; i < lstPessoas.Items.Count; i++)
+            {
+                pessoa = (Pessoa)lstPessoas.Items[i]; //casting
+                listaPessoas.Add(pessoa);
+
+            }
+
+            
+            
+
+            //json = JsonSerializer.Serialize(listaPessoas,
+            //new JsonSerializerOptions { WriteIndented = true });
+            return json;
+        }
+
+        private void lblMensagem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

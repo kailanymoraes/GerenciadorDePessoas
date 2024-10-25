@@ -36,3 +36,4 @@ C:\Users\kailany.smoraes\source\repos\SlnGerenciadorDePessoas\PrjGerenciadorDePe
 C:\Users\kailany.smoraes\source\repos\SlnGerenciadorDePessoas\PrjGerenciadorDePessoas\bin\Debug\net6.0-windows\PrjGerenciadorDePessoas.pdb
 C:\Users\kailany.smoraes\source\repos\SlnGerenciadorDePessoas\PrjGerenciadorDePessoas\obj\Debug\net6.0-windows\PrjGerenciadorDePessoas.genruntimeconfig.cache
 C:\Users\kailany.smoraes\source\repos\SlnGerenciadorDePessoas\PrjGerenciadorDePessoas\obj\Debug\net6.0-windows\ref\PrjGerenciadorDePessoas.dll
+C:\Users\kailany.smoraes\source\repos\SlnGerenciadorDePessoas\PrjGerenciadorDePessoas\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
