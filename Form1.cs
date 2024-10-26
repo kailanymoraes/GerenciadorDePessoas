@@ -5,7 +5,7 @@ using System.CodeDom;
 using System.Linq.Expressions;
 using System.Reflection;
 using static System.Windows.Forms.LinkLabel;
-using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace PrjGerenciadorDePessoas
 {
@@ -15,6 +15,7 @@ namespace PrjGerenciadorDePessoas
 
         private List<Pessoa> pessoas = new List<Pessoa>();
 
+        
         public Form1()
         {
             InitializeComponent();
@@ -274,7 +275,7 @@ namespace PrjGerenciadorDePessoas
             //declarando uma variavel do tipo lista pessoas
             listaPessoas = new List<Pessoa>();
             //iniciando uma lista de pessoas e atribuindo a variavel
-            string json = JsonConvert.SerializeObject(listaPessoas, Formatting.Indented);
+            //string json = JsonConvert.SerializeObject(listaPessoas, Formatting.Indented);
 
             for (int i = 0; i < lstPessoas.Items.Count; i++)
             {
@@ -283,8 +284,7 @@ namespace PrjGerenciadorDePessoas
 
             }
 
-            
-            
+            string json = JsonConvert.SerializeObject(listaPessoas, Formatting.Indented);
 
             //json = JsonSerializer.Serialize(listaPessoas,
             //new JsonSerializerOptions { WriteIndented = true });
